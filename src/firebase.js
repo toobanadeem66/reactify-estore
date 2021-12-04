@@ -3,6 +3,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth"
 import "firebase/compat/firestore"
+import 'firebase/compat/storage';
 // import firebase from "firebase";
 // import { initializeApp } from 'firebase/app';
 
@@ -22,5 +23,7 @@ const db = firebase.firestore();
 
 const auth = firebase.auth();
 
-export {db, auth};
+const storage = firebase.storage();
+
+export {db, auth, storage};
   

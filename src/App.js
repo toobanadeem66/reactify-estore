@@ -15,6 +15,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import { AddProducts } from "./addproducts";
 import { ProductsContextProvider } from "./ProductsContext";
 import Signup from "./Signup";
+import Card from "./Card";
+// import Card from "./CardIndex";
 
 const promise = loadStripe(
   "pk_test_51HPvU9DFg5koCdLGJJbNo60QAU99BejacsvnKvT8xnCu1wFLCuQP3WBArscK3RvSQmSIB3N0Pbsc7TtbQiJ1vaOi00X9sIbazL"
@@ -74,6 +76,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <Signup />
+          </Route>
+          <Route path="/card">
+            <Card />
           </Route>
           <Route path="/">
             <Header />

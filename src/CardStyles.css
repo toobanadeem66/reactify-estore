@@ -1,0 +1,24 @@
+.card {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+input {
+  display: block;
+  margin: 10px auto;
+  padding: 8px 16px;
+  font-size: 16px;
+  color: #222;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+}
+.login__signInButton {
+  background: #f0c14b;
+  border-radius: 2px;
+  width: 30%;
+  height: 30px;
+  border: 1px solid;
+  margin-top: 10px;
+  border-color: #a88734 #9c7e31 #846a29;
+}

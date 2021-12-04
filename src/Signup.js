@@ -26,14 +26,14 @@ function Signup() {
                 if (auth) {
                     // add User
                     db.collection('Users').add({
-                        UserID: auth.user.uid,
+                        UserID: auth.currentUser.uid,
                         UserEmail: email,
                         UserFName: firstName,
                         UserLName: lastName,
                         UserGender: gender,
                         UserAddress: address
                     }).catch(err => setError(err.message))
-                    history.push('/')
+                    history.push('/card', auth)
                 }
             })
             .catch(error => alert(error.message))

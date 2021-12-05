@@ -3,7 +3,7 @@
   text-align: center;
 }
 
-input {
+.inputClass {
   display: block;
   margin: 10px auto;
   padding: 8px 16px;

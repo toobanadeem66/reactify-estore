@@ -1,11 +1,9 @@
-import { append } from 'min-document';
 import React,  {createContext} from 'react';
 import {db} from './firebase';
 export const ProductsContext = createContext();
 export class ProductsContextProvider extends React.Component{
-
-    state={
-        products:[]
+state={
+    products:[]
 }
 
 componentDidMount(){
@@ -19,8 +17,7 @@ componentDidMount(){
                     ProductName: change.doc.data().ProductName,
                     ProductPrice: change.doc.data().ProductPrice,
 		            ProductRating: change.doc.data().ProductRating,
-                    PriductName: change.doc.data().ProductImg,
-
+                    ProductImg: change.doc.data().ProductImg,
                 })
             }
             this.setState({

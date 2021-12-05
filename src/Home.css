@@ -1,3 +1,4 @@
+
 .home {
   display: flex;
   justify-content: center;
@@ -6,19 +7,109 @@
   max-width: 1500px;
 }
 
-.home__row {
-  display: flex;
-  z-index: 1;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
 .home__image {
   width: 100%;
   z-index: -1;
   margin-bottom: -150px;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));}
+
+h1 {
+  padding: 30px;
+  /* border-bottom: 1px solid #e4e4e4; */
 }
-.product__rating {
+
+@media(max-width: 768px) {
+  h1 {
+      text-align: center;
+      padding: 10px;
+  }
+}
+
+.products-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  flex-wrap: wrap;
+ 
+}
+
+.products-container .product-card {
+  width: 300px;
+  height: auto;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 5px 5px 4px #e4e4e4;
+  position: relative;
+  background: rgb(234, 237, 237);
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.product-info-container{
+  width: 270px;
+  padding: 2px;
+  margin: auto;
+}
+
+.products-container .product-card .product-img  {
+  width: 100%;
+  height: 200px;
+
+}
+
+.products-container .product-card .product-img img {
+  width: 100%;
+  height: 100%;
+}
+
+.products-container .product-card .product-name {
+  display: block;
+  width: 100%;
+  color: #f0c14b;
+  margin-top: 5px;
+}
+
+.products-container .product-card .product-price {
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.products-container .product-card .addcart-btn {
+  background: #f0c14b;
+  border-radius: 2px;
+  width: 100%;
+  height: 30px;
+  border: 1px solid;
+  margin-top: 10px;
+  border-color: #a88734 #9c7e31 #846a29;
+  color: #111;
+
+}
+
+.product-rating{
   display: flex;
 }
+
+
+/* .home__row {
+  display: flex;
+  z-index: 1;
+  margin-left: 5px;
+  margin-right: 5px;
+} */
+
+
+
+/* .product__rating {
+  display: flex;
+} */
+
+

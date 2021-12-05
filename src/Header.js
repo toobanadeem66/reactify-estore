@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useCallback } from "react";
 import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
-import { auth } from "./firebase";
+import { auth, db, storage } from "./firebase";
+var fname = ""
 
 function Header() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -14,6 +15,21 @@ function Header() {
       auth.signOut();
     }
   }
+
+  const Users = () => {
+    console.log("Mounted User DB");
+    db.collection('Users')
+        .where("UserID", "==", auth.currentUser.uid)
+        .get()
+        .then(snapshot=>{
+            fname = snapshot.docs[0].get('UserFName');
+            //console.log(`FirstName is ${fname}.`);
+            //this.fname = fname;
+            }
+        )
+        console.log("User: ", fname)
+        return fname;
+    }
 
   return (
     <div className="header">
@@ -32,7 +48,7 @@ function Header() {
       <div className="header__nav">
         <Link to={!user && '/login'}>
           <div onClick={handleAuthenticaton} className="header__option">
-            <span className="header__optionLineOne">Hello {!user ? 'Guest' : user.email}</span>
+            <span className="header__optionLineOne">Hello {!user ? 'Guest' : Users() }</span>
             <span className="header__optionLineTwo">{user ? 'Sign Out' : 'Sign In'}</span>
           </div>
         </Link>
@@ -62,5 +78,4 @@ function Header() {
     </div>
   );
 }
-
 export default Header;

@@ -1,13 +1,14 @@
 import React, {useContext} from 'react';
 import { ProductsContext } from './ProductsContext';
 import "./Home.css";
-import "./Products.css";
+// import "./Products.css";
 import { useStateValue } from "./StateProvider";
 
-function Home({ id, title, image, price, rating }) {
+function Home() {
     const {products} = useContext(ProductsContext);
     const [{ basket }, dispatch] = useStateValue();
-    const addToBasket = () => {
+
+    const addToBasket = ({id, title, image, price, rating }) => {
         // dispatch the item into the data layer
         dispatch({
         type: "ADD_TO_BASKET",
@@ -20,7 +21,7 @@ function Home({ id, title, image, price, rating }) {
         },
         });
     };
-    //console.log(products);
+    console.log(products);
     return(
         <div className="home">
             <div className="home__container">
@@ -31,13 +32,15 @@ function Home({ id, title, image, price, rating }) {
                 />
 
                 {products.length !== 0 && <h1>Products</h1>}
+
                 <div className='products-container'>
                     {products.length === 0 && <div>slow internet...no products to display</div>}
                     {products.map(product => (
                         <div className='product-card' key={product.ProductID}>
+                            <div className="product-info-container">
                             <div className='product-img'>
                                 <img 
-                                src = {product.ProductImg}
+                                src = {product.ProductImage}
                                 alt="not found" 
                                 />
                             </div>
@@ -51,12 +54,13 @@ function Home({ id, title, image, price, rating }) {
                                 {Array(product.ProductRating)
                                 .fill()
                                 .map((_, i) => (
-                                <p>🌟</p>
+                                <p>★</p>
                                 ))}
                             </div>
-                            <button className='addcart-btn' onClick={addToBasket}>ADD TO CART</button>
+                            <button className='addcart-btn' onClick={()=> addToBasket({id:product.ProductID, title:product.ProductName, image:product.ProductImage, price:product.ProductPrice, rating: product.ProductRating})}>ADD TO CART</button>
                             {/* <button className='addcart-btn' onClick={addToBasket}>ADD TO CART</button> */}
                             {/* <button onClick={addToBasket}>Add to Basket</button> */}
+                        </div>
                         </div>
                     ))}
                 </div>

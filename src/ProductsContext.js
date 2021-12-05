@@ -19,7 +19,7 @@ componentDidMount(){
                     ProductName: change.doc.data().ProductName,
                     ProductPrice: change.doc.data().ProductPrice,
 		            ProductRating: change.doc.data().ProductRating,
-                    PriductName: change.doc.data().ProductImg,
+                    ProductImage: change.doc.data().ProductImg,
 
                 })
             }

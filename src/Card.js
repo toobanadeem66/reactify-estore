@@ -37,7 +37,7 @@ function Card() {
     return (
         <div className="card">
         <form>
-            <input
+            <input className="inputClass"
             type="tel"
             name="number"
             placeholder="Card Number"
@@ -46,7 +46,7 @@ function Card() {
             onFocus={(e) => setFocus(e.target.name)}
             ref={ref}
             />
-            <input
+            <input className="inputClass"
             type="text"
             name="name"
             placeholder="Name"
@@ -54,7 +54,7 @@ function Card() {
             onChange={(e) => setName(e.target.value)}
             onFocus={(e) => setFocus(e.target.name)}
             />
-            <input
+            <input className="inputClass"
             type="text"
             name="expiry"
             placeholder="MM/YY"
@@ -62,7 +62,7 @@ function Card() {
             onChange={(e) => setExpiry(e.target.value)}
             onFocus={(e) => setFocus(e.target.name)}
             />
-            <input
+            <input className="inputClass"
             type="tel"
             name="cvc"
             placeholder="CVC"

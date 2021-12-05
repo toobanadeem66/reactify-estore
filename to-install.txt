@@ -4,6 +4,8 @@ npm install @material-ui/core
 npm install @material-ui/icons
 npm install firebase
 npm install -g firebase-tools
-npm install @stripe/react-stripe-js
-npm install @stripe/stripe-js
-npm install moment
+npm install @stripe/react-stripe-js -force
+npm install @stripe/stripe-js --force
+npm install moment --force
+npm install --save react-credit-cards
+npm install axios --force

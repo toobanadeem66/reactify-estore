@@ -37,11 +37,17 @@
     padding-bottom: 20px;
   }
 
+.payment__details_cash{
+  margin-top: 50px;
+}
 
-  .payment__details > form > div > button {
+.cashR{
+  margin-left: 20px;
+}
+  .payment_button {
     background: #f0c14b;
     border-radius: 2px;
-    width: 100%;
+    width: 400px;
     height: 30px;
     border: 1px solid;
     font-weight: bolder;

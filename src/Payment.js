@@ -7,7 +7,8 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "./Reducer";
 import axios from './axios';
-import { db } from "./firebase";
+import { auth, db } from "./firebase";
+var address = ""
 
 function Payment() {
     const [{ basket, user }, dispatch] = useStateValue();
@@ -21,6 +22,21 @@ function Payment() {
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(true);
     const [clientSecret, setClientSecret] = useState(true);
+
+    const Users = () => {
+        console.log("Mounted User DB");
+        db.collection('Users')
+            .where("UserID", "==", auth.currentUser.uid)
+            .get()
+            .then(snapshot=>{
+                address = snapshot.docs[0].get('UserAddress');
+                //console.log(`FirstName is ${fname}.`);
+                //this.fname = fname;
+                }
+            )
+            //console.log("User: ", fname)
+            return address;
+        }
 
     useEffect(() => {
         // generate the special stripe secret which allows us to charge a customer
@@ -52,9 +68,9 @@ function Payment() {
             // paymentIntent = payment confirmation
 
             db
-              .collection('users')
+              .collection('Users')
               .doc(user?.uid)
-              .collection('orders')
+              .collection('Orders')
               .doc(paymentIntent.id)
               .set({
                   basket: basket,
@@ -82,6 +98,7 @@ function Payment() {
         setError(event.error ? event.error.message : "");
     }
 
+
     return (
         <div className='payment'>
             <div className='payment__container'>
@@ -99,8 +116,8 @@ function Payment() {
                     </div>
                     <div className='payment__address'>
                         <p>{user?.email}</p>
-                        <p>123 React Lane</p>
-                        <p>Los Angeles, CA</p>
+                        <p>{Users()}</p>
+                        <p>Karachi, Pakistan</p>
                     </div>
                 </div>
 
@@ -128,6 +145,7 @@ function Payment() {
                     <div className="payment__title">
                         <h3>Payment Method</h3>
                     </div>
+
                     <div className="payment__details">
                             {/* Stripe magic will go */}
 
@@ -143,16 +161,34 @@ function Payment() {
                                         value={getBasketTotal(basket)}
                                         displayType={"text"}
                                         thousandSeparator={true}
-                                        prefix={"$"}
+                                        prefix={"Rs. "}
                                     />
-                                    <button disabled={processing || disabled || succeeded}>
+                                    {/* <button disabled={processing || disabled || succeeded}>
                                         <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
-                                    </button>
+                                    </button> */}
                                 </div>
 
                                   {/* Errors */}
                                 {error && <div>{error}</div>}
+
+                                </form> 
+                            <div className="payment__details_cash">                            
+                            <form>
+                            <label className="CashOnDelivery">
+                                Cash On Delivery
+                            </label>
+                            <input 
+                            className="cashR"
+                            name="Cash On Delivery"
+                            type="radio"
+                            />
                             </form>
+                            </div>
+                            {/* disabled={processing || disabled || succeeded} */}
+                            <button className="payment_button" onClick={e => history.push('/orders') }  disabled={processing || disabled || succeeded} >
+                                        <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
+                                    </button>
+
                     </div>
                 </div>
             </div>

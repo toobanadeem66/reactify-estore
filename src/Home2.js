@@ -21,17 +21,17 @@ function Home() {
         },
         });
     };
-    console.log(products);
+    //console.log(products);
     return(
         <div className="home">
             <div className="home__container">
                 <img
                 className="home__image"
-                src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
+                src="https://d1iv6qgcmtzm6l.cloudfront.net/categories/9DaIRx0MTqLrab71lKo1eaONLdyohU1Sw5v0L23O.png"
                 alt=""
                 />
 
-                {products.length !== 0 && <h1>Products</h1>}
+                {products.length !== 0 && <h1></h1>}
 
                 <div className='products-container'>
                     {products.length === 0 && <div>slow internet...no products to display</div>}
@@ -40,7 +40,7 @@ function Home() {
                             <div className="product-info-container">
                             <div className='product-img'>
                                 <img 
-                                src = {product.ProductImage}
+                                src = {product.ProductImg}
                                 alt="not found" 
                                 />
                             </div>

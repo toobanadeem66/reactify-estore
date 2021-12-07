@@ -64,14 +64,14 @@ function EditProfile() {
                 console.log(`updated all documents inside ${"Users"}`)
             })
         })
-        
+        save_my_card()
     }
     useEffect(() => {
         ref.current.focus();
     }, []);
     const ref = useRef(null);
     const save_my_card = e => {
-    e.preventDefault();
+    //e.preventDefault();
         if (auth) {
             // Update Card
             const collection = db.collection("Card")
@@ -108,13 +108,13 @@ function EditProfile() {
                 <form >
                     <h5>First Name</h5>
                     <input type='text' value={firstName} onChange={e => setFName(e.target.value)} />
-                    
+
                     <h5>Last Name</h5>
                     <input type='text' value={lastName} onChange={e => setLName(e.target.value)} />
-                    
+
                     <h5>E-mail</h5>
                     <input type='text' value={auth.currentUser.email} readonly />
-                    
+
                     <h5>Gender</h5>
                     <label>Male</label>
                     <input className = "radio" type="radio" name="gender" value={gender} onChange={e => setGender("Male")}/> 
@@ -158,7 +158,7 @@ function EditProfile() {
                 onFocus={(e) => setFocus(e.target.name)}
                 />
 
-                <button onClick={register, save_my_card} className='login__signInButton'>Save Changes</button>      
+                <button onClick={register} className='login__signInButton'>Save Changes</button>      
                 </form>
             </div>     
         </div>
@@ -166,4 +166,3 @@ function EditProfile() {
     )
 }
 export default EditProfile
-

@@ -22,6 +22,12 @@ function Payment() {
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(true);
     const [clientSecret, setClientSecret] = useState(true);
+    const empty = () => {
+        // dispatch the item into the data layer
+        dispatch({
+        type: "EMPTY_BASKET",
+        });
+    };
 
     const Users = () => {
         console.log("Mounted User DB");
@@ -98,10 +104,9 @@ function Payment() {
         setError(event.error ? event.error.message : "");
     }
 
- console.log("Basket is ")
- console.log(basket);
-console.log(basket[0].id);
-
+//  console.log("Basket is ")
+//  console.log(basket);
+// console.log(basket[0].id);
 
     function addingtodb(basket){
         //basket itteratte store in array only ids
@@ -127,8 +132,11 @@ console.log(basket[0].id);
         db.collection('Basket').add({
             UserID : auth.currentUser.uid,
             basket_arr : basket
+            
+            
         }
         )
+        empty()
     }
             
             
@@ -207,7 +215,7 @@ console.log(basket[0].id);
                                 {error && <div>{error}</div>}
 
                                 </form> 
-                            <div className="payment__details_cash">                            
+                            {/* <div className="payment__details_cash">                            
                             <form>
                             <label className="CashOnDelivery">
                                 Cash On Delivery
@@ -218,7 +226,7 @@ console.log(basket[0].id);
                             type="radio"
                             />
                             </form>
-                            </div>
+                            </div> */}
                             {/* disabled={processing || disabled || succeeded} */}
                             <button  className="payment_button" onClick={e => {history.push('/orders'); addingtodb(basket)}} >
                                 <span>{processing ? <p>Processing</p> : "Buy Now"}</span>

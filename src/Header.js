@@ -5,8 +5,7 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 import { auth, db, storage } from "./firebase";
-var fname = ""
-
+var fname, display = ""
 function Header() {
   const [{ basket, user }, dispatch] = useStateValue();
 
@@ -18,11 +17,11 @@ function Header() {
 
   const Users = () => {
     console.log("Mounted User DB");
-    db.collection('Users')
+     db.collection('Users')
         .where("UserID", "==", auth.currentUser.uid)
         .get()
         .then(snapshot=>{
-            fname = snapshot.docs[0].get('UserFName');
+            fname =  snapshot.docs[0].get('UserFName');
             //console.log(`FirstName is ${fname}.`);
             //this.fname = fname;
             }
@@ -32,6 +31,7 @@ function Header() {
     }
 
   return (
+    //display = user? Users() : "",
     <div className="header">
       <Link to="/">
         <img

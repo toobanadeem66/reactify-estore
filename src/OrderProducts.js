@@ -1,10 +1,20 @@
 import React from 'react';
-import './CheckoutProduct.css'
 import { useStateValue } from "./StateProvider";
+import { auth, db } from "./firebase";
 
-function CheckoutProduct({ id, image, title, price, rating, hideButton }) {
-    const [{ basket }, dispatch] = useStateValue();
 
+
+var basket = []
+function OrderProducts({ id, image, title, price, rating, hideButton }) {
+    db.collection('Basket')
+            .where("UserID", "==", auth.currentUser.uid)
+            .get()
+            .then(snapshot=>{
+                basket = snapshot.docs[0].get('basket_arr');
+            }
+            )
+    //const [{ basket }, dispatch] = useStateValue();
+                /*
     const removeFromBasket = () => {
         // remove the item from the basket
         dispatch({
@@ -12,7 +22,7 @@ function CheckoutProduct({ id, image, title, price, rating, hideButton }) {
             id: id,
         })
     }
-
+    */
     return (
         <div className='checkoutProduct'>
             <img className='checkoutProduct__image' src={image} />
@@ -30,12 +40,8 @@ function CheckoutProduct({ id, image, title, price, rating, hideButton }) {
                         <p>★</p>
                     ))}
                 </div>
-                {!hideButton && (
-                    <button onClick={removeFromBasket}>Remove from Basket</button>
-                )}
             </div>
         </div>
     )
-}
-
-export default CheckoutProduct
+                    }
+export default OrderProducts;

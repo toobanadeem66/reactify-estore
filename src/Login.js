@@ -41,7 +41,7 @@ function Login() {
             <Link to='/'>
                 <img
                     className="login__logo"
-                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png' 
+                    src='https://firebasestorage.googleapis.com/v0/b/reactify-e-store.appspot.com/o/Logowhite.png?alt=media&token=02a3eebc-3acf-453b-80a9-501310ab1936' 
                 />
             </Link>
 
@@ -67,7 +67,7 @@ function Login() {
 
                 <Link to='/signup'>
                     <button className='login__registerButton'>
-                    Create your Amazon Account </button>
+                    Create your Reactify Account </button>
                 </Link>
             </div>
         </div>

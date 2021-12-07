@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './Login.css'
+import './Signup.css'
 import { Link, useHistory } from "react-router-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {db, auth} from "./firebase"
 import './index.css'
 import './Login.css'
+
 
 function Signup() {
     const history = useHistory();
@@ -37,7 +39,6 @@ function Signup() {
                 }
             })
             .catch(error => alert(error.message))
-        
     }
 
     return (
@@ -45,7 +46,7 @@ function Signup() {
             <Link to='/'>
                 <img
                     className="login__logo"
-                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png' 
+                    src='https://firebasestorage.googleapis.com/v0/b/reactify-e-store.appspot.com/o/Logowhite.png?alt=media&token=02a3eebc-3acf-453b-80a9-501310ab1936' 
                 />
             </Link>
 
@@ -53,10 +54,10 @@ function Signup() {
                 <h1>Sign-Up</h1>
 
                 <form >
-                    <h5>FirstName</h5>
+                    <h5>First Name</h5>
                     <input type='text' value={firstName} onChange={e => setFName(e.target.value)} />
                     
-                    <h5>LastName</h5>
+                    <h5>Last Name</h5>
                     <input type='text' value={lastName} onChange={e => setLName(e.target.value)} />
                     
                     <h5>E-mail</h5>
@@ -66,7 +67,7 @@ function Signup() {
                     <input type='password' value={password} onChange={e => setPassword(e.target.value)} />
                     
                     <h5>Gender</h5>
-                    <input type="radio" name="gender" value={gender} onChange={e => setGender("Male")}/>Male | 
+                    <input type="radio" name="gender" value={gender} onChange={e => setGender("Male")}/>Male  
                     <input type="radio" name="gender" value={gender} onChange={e => setGender("Female")}/>Female
 
                     <h5>Address</h5>
@@ -79,7 +80,7 @@ function Signup() {
                     see our Privacy Notice, our Cookies Notice and our Interest-Based Ads Notice.
                 </p>
 
-                <button onClick={register} className='login__signInButton'>Create your Amazon Account</button>
+                <button onClick={register} className='login__signInButton'>Create Reactify Account</button>
             </div>
         </div>
     )

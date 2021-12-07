@@ -36,7 +36,7 @@ function Header() {
       <Link to="/">
         <img
           className="header__logo"
-          src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+          src="https://firebasestorage.googleapis.com/v0/b/reactify-e-store.appspot.com/o/LOGO.png?alt=media&token=dd2e05e1-4dcf-4b8e-9b2d-24636dd7ffa6"
         />
       </Link>
 
@@ -60,11 +60,12 @@ function Header() {
           </div>
         </Link>
         
-
+        <Link to="/EditProfile">
         <div className="header__option">
-          <span className="header__optionLineOne">Your</span>
-          <span className="header__optionLineTwo">Prime</span>
+          <span className="header__optionLineOne">Edit</span>
+          <span className="header__optionLineTwo">Profile</span>
         </div>
+        </Link>
 
         <Link to="/checkout">
           <div className="header__optionBasket">

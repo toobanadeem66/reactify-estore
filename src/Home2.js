@@ -3,12 +3,15 @@ import { ProductsContext } from './ProductsContext';
 import "./Home.css";
 // import "./Products.css";
 import { useStateValue } from "./StateProvider";
+import ProductDetail from './ProductDetail';
+import { useHistory, Link } from "react-router-dom";
 
 function Home() {
     const {products} = useContext(ProductsContext);
-    const [{ basket }, dispatch] = useStateValue();
+    const [{ basket}, dispatch] = useStateValue();
+      const history = useHistory();
 
-    const addToBasket = ({id, title, image, price, rating }) => {
+    const addToBasket = ({id, title, image, price, rating,description }) => {
         // dispatch the item into the data layer
         dispatch({
         type: "ADD_TO_BASKET",
@@ -21,7 +24,7 @@ function Home() {
         },
         });
     };
-    //console.log(products);
+
     return(
         <div className="home">
             <div className="home__container">
@@ -39,10 +42,10 @@ function Home() {
                         <div className='product-card' key={product.ProductID}>
                             <div className="product-info-container">
                             <div className='product-img'>
-                                <img 
+                            <Link to = {"/ProductDetail/"+product.ProductID}> <img 
                                 src = {product.ProductImg}
                                 alt="not found" 
-                                />
+                                /> </Link>
                             </div>
                             <div className='product-name'>
                                 {product.ProductName}
@@ -57,7 +60,7 @@ function Home() {
                                 <p>★</p>
                                 ))}
                             </div>
-                            <button className='addcart-btn' onClick={()=> addToBasket({id:product.ProductID, title:product.ProductName, image:product.ProductImg, price:product.ProductPrice, rating: product.ProductRating})}>ADD TO CART</button>
+                            <button className='addcart-btn' onClick={()=> addToBasket({id:product.ProductID, title:product.ProductName, image:product.ProductImg, price:product.ProductPrice, rating: product.ProductRating, description: product.ProductDesc})}>ADD TO CART</button>
                             {/* <button className='addcart-btn' onClick={addToBasket}>ADD TO CART</button> */}
                             {/* <button onClick={addToBasket}>Add to Basket</button> */}
                         </div>

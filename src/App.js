@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./Header";
 //import Home from "./Home";
  import Home from "./Home2";
-import { useHistory, BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Checkout from "./Checkout";
 import Login from "./Login";
 import Payment from "./Payment";
@@ -13,11 +13,12 @@ import { useStateValue } from "./StateProvider";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { AddProducts } from "./addproducts";
-import  EditProfile from "./EditProfile"
 import { ProductsContextProvider } from "./ProductsContext";
 import Signup from "./Signup";
 import Card from "./Card";
-import { Title } from "@material-ui/icons";
+import EditProfile from "./EditProfile"
+import ProductDetail from "./ProductDetail"
+
 // import Card from "./CardIndex";
 
 const promise = loadStripe(
@@ -26,10 +27,10 @@ const promise = loadStripe(
 
 function App() {
   const [{}, dispatch] = useStateValue();
-  const history = useHistory();
 
   useEffect(() => {
     // will only run once when the app component loads...
+
     auth.onAuthStateChanged((authUser) => {
       console.log("THE USER IS >>> ", authUser);
 
@@ -51,9 +52,9 @@ function App() {
   }, []);
 
   return (
+
     <ProductsContextProvider>
     <Router>
-      {/* <Title>Reactify E-Store</Title> */}
       <div className="app">
         <Switch>
           <Route path="/orders">
@@ -84,8 +85,12 @@ function App() {
             <Card />
           </Route>
           <Route path="/EditProfile">
-            <Header />
-            <EditProfile/>
+          <Header />
+          <EditProfile/>
+          </Route>
+          <Route path="/ProductDetail/:id">
+          <Header />
+          <ProductDetail/>
           </Route>
           <Route path="/">
             <Header />
@@ -95,6 +100,7 @@ function App() {
       </div>
     </Router>
     </ProductsContextProvider>
+ 
   );
 }
 

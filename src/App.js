@@ -13,9 +13,11 @@ import { useStateValue } from "./StateProvider";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { AddProducts } from "./addproducts";
+import  EditProfile from "./EditProfile"
 import { ProductsContextProvider } from "./ProductsContext";
 import Signup from "./Signup";
 import Card from "./Card";
+import { Title } from "@material-ui/icons";
 // import Card from "./CardIndex";
 
 const promise = loadStripe(
@@ -51,6 +53,7 @@ function App() {
   return (
     <ProductsContextProvider>
     <Router>
+      {/* <Title>Reactify E-Store</Title> */}
       <div className="app">
         <Switch>
           <Route path="/orders">
@@ -70,7 +73,7 @@ function App() {
               <Payment />
             </Elements>
           </Route>
-          <Route path="/addproducts">
+          <Route path="/admin">
             <Header />
             <AddProducts />
           </Route>
@@ -79,6 +82,10 @@ function App() {
           </Route>
           <Route path="/card">
             <Card />
+          </Route>
+          <Route path="/EditProfile">
+            <Header />
+            <EditProfile/>
           </Route>
           <Route path="/">
             <Header />

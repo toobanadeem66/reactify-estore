@@ -98,6 +98,41 @@ function Payment() {
         setError(event.error ? event.error.message : "");
     }
 
+ console.log("Basket is ")
+ console.log(basket);
+console.log(basket[0].id);
+
+
+    function addingtodb(basket){
+        //basket itteratte store in array only ids
+        var pidarray = []
+        var items = 0
+        while(items != basket?.length){
+            pidarray.push(String(basket[items].id))
+            console.log("Basket Iteration:")
+            console.log(String(basket[items].id))
+            items = items + 1
+        }
+        var paytype = "CashOnDelivery";
+        db.collection('Orders').add({
+                OrderStatus : "Pending",
+                PaymentType : paytype,
+                ProductIDs : pidarray,
+                TotalPrice : Number(getBasketTotal(basket)),
+                UserID : auth.currentUser.uid
+            }
+
+            
+        )
+        db.collection('Basket').add({
+            UserID : auth.currentUser.uid,
+            basket_arr : basket
+        }
+        )
+    }
+            
+            
+            
 
     return (
         <div className='payment'>
@@ -116,7 +151,7 @@ function Payment() {
                     </div>
                     <div className='payment__address'>
                         <p>{user?.email}</p>
-                        <p>{Users()}</p>
+                        <p>{auth? Users() : "Default Address"}</p>
                         <p>Karachi, Pakistan</p>
                     </div>
                 </div>
@@ -185,15 +220,15 @@ function Payment() {
                             </form>
                             </div>
                             {/* disabled={processing || disabled || succeeded} */}
-                            <button className="payment_button" onClick={e => history.push('/orders') }  disabled={processing || disabled || succeeded} >
-                                        <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
-                                    </button>
-
+                            <button  className="payment_button" onClick={e => {history.push('/orders'); addingtodb(basket)}} >
+                                <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
+                            </button>
                     </div>
                 </div>
             </div>
         </div>
     )
 }
+
 
 export default Payment

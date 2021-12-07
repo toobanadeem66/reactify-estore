@@ -57,7 +57,7 @@ function Home() {
                                 <p>★</p>
                                 ))}
                             </div>
-                            <button className='addcart-btn' onClick={()=> addToBasket({id:product.ProductID, title:product.ProductName, image:product.ProductImage, price:product.ProductPrice, rating: product.ProductRating})}>ADD TO CART</button>
+                            <button className='addcart-btn' onClick={()=> addToBasket({id:product.ProductID, title:product.ProductName, image:product.ProductImg, price:product.ProductPrice, rating: product.ProductRating})}>ADD TO CART</button>
                             {/* <button className='addcart-btn' onClick={addToBasket}>ADD TO CART</button> */}
                             {/* <button onClick={addToBasket}>Add to Basket</button> */}
                         </div>
